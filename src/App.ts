@@ -411,7 +411,7 @@ export default class App {
     // Set body and payload (this value will eventually conform to AnyMiddlewareArgs)
     // NOTE: the following doesn't work because... distributive?
     // const listenerArgs: Partial<AnyMiddlewareArgs> = {
-    const listenerArgs: Pick<AnyMiddlewareArgs, 'body' | 'payload' | 'client'> & {
+    const listenerArgs: Pick<AnyMiddlewareArgs, 'body' | 'payload' | 'client' | 'logger' > & {
       /** Say function might be set below */
       say?: SayFn
       /** Respond function might be set below */
@@ -419,7 +419,6 @@ export default class App {
       /** Ack function might be set below */
       ack?: AckFn<any>,
     } = {
-      client: this.client,
       body: bodyArg,
       payload:
         (type === IncomingEventType.Event) ?
@@ -434,6 +433,8 @@ export default class App {
                   SlackViewMiddlewareArgs> | SlackActionMiddlewareArgs<Exclude<SlackAction, BlockAction |
                     InteractiveMessage>>
               )['body']),
+      client: this.client,
+      logger: this.logger,
     };
 
     // Set aliases

@@ -8,7 +8,7 @@ import { InteractiveMessage } from './interactive-message';
 import { DialogSubmitAction, DialogValidation } from './dialog-action';
 import { MessageAction } from './message-action';
 import { SayFn, SayArguments, RespondFn, AckFn } from '../utilities';
-import { WebClient } from '@slack/web-api';
+import { WebClient, Logger } from '@slack/web-api';
 
 /**
  * All known actions from Slack's Block Kit interactive components, message actions, dialogs, and legacy interactive
@@ -47,6 +47,7 @@ export interface SlackActionMiddlewareArgs<Action extends SlackAction = SlackAct
   respond: RespondFn;
   ack: ActionAckFn<Action>;
   client: WebClient;
+  logger: Logger;
 }
 
 /**
