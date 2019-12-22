@@ -11,7 +11,7 @@ order: 9
 
 <code>trigger_id</code> はコマンド、ボタンの押下、メニューの選択などによって Request URL に送信されたペイロードの項目として入手することができます。
 
-モーダルビューの作成についてのより詳細な情報は <a href="https://api.slack.com/block-kit/surfaces/modals#composing_modal">API ドキュメント</a>を参照してください。
+モーダルビューの作成についてのより詳細な情報は <a href="https://api.slack.com/surfaces/modals/using#composing_views">API ドキュメント</a>を参照してください。
 </div>
 
 ```javascript
@@ -23,11 +23,11 @@ app.command('/ticket', ({ ack, payload, context }) => {
   try {
     const result = app.client.views.open({
       token: context.botToken,
-      type: 'modal',
       // 適切な trigger_id を受け取ってから 3 秒以内に渡す
       trigger_id: payload.trigger_id,
       // view の値をペイロードに含む
       view: {
+        type: 'modal',
         // callback_id が view を特定するための識別子
         callback_id: 'view_1',
         title: {

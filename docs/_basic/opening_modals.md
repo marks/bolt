@@ -10,7 +10,7 @@ order: 9
 
 Your app receives <code>trigger_id</code>s in payloads sent to your Request URL triggered user invocation like a slash command, button press, or interaction with a select menu.
 
-Read more about modal composition in the <a href="https://api.slack.com/block-kit/surfaces/modals#composing_modal">API documentation</a>.
+Read more about modal composition in the <a href="https://api.slack.com/surfaces/modals/using#composing_views">API documentation</a>.
 </div>
 
 ```javascript
@@ -22,11 +22,11 @@ app.command('/ticket', ({ ack, payload, context }) => {
   try {
     const result = app.client.views.open({
       token: context.botToken,
-      type: 'modal',
       // Pass a valid trigger_id within 3 seconds of receiving it
       trigger_id: payload.trigger_id,
       // View payload
       view: {
+        type: 'modal',
         // View identifier
         callback_id: 'view_1',
         title: {
