@@ -2,6 +2,7 @@ export * from './base-events';
 import { SlackEvent, BasicSlackEvent } from './base-events';
 import { StringIndexed } from '../helpers';
 import { SayFn } from '../utilities';
+import { WebClient } from '@slack/web-api';
 
 /**
  * Arguments which listeners and middleware receive to process an event from Slack's Events API.
@@ -12,6 +13,7 @@ export interface SlackEventMiddlewareArgs<EventType extends string = string> {
   message: EventType extends 'message' ? this['payload'] : never;
   body: EnvelopedEvent<this['payload']>;
   say: WhenEventHasChannelContext<this['payload'], SayFn>;
+  client: WebClient;
 }
 
 /**

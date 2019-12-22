@@ -1,6 +1,7 @@
 import { Option } from '@slack/types';
 import { StringIndexed, XOR } from '../helpers';
 import { AckFn } from '../utilities';
+import { WebClient } from '@slack/web-api';
 
 /**
  * Arguments which listeners and middleware receive to process an options request from Slack
@@ -10,6 +11,7 @@ export interface SlackOptionsMiddlewareArgs<Source extends OptionsSource = Optio
   body: this['payload'];
   options: this['payload'];
   ack: OptionsAckFn<Source>;
+  client: WebClient;
 }
 
 /**

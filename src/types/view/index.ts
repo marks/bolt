@@ -1,5 +1,6 @@
 import { StringIndexed } from '../helpers';
 import { RespondArguments, AckFn } from '../utilities';
+import { WebClient } from '@slack/web-api';
 
 /**
  * Known view action types
@@ -14,6 +15,7 @@ export interface SlackViewMiddlewareArgs<ViewActionType extends SlackViewAction 
   view: this['payload'];
   body: ViewActionType;
   ack: AckFn<string | RespondArguments>;
+  client: WebClient;
 }
 
 interface PlainTextElementOutput {
